@@ -19,7 +19,7 @@ server.route({
 	handler: (request, h) => {
 		//return 'hello hapi '+process.env.consumer_key
 
-		client.get('favorites/list', function (error, tweets, response) {
+		client.get('favorites/list', (error, tweets, response) => {
             if (error) throw error;
             //console.log(tweets);  // The favorites.
             //console.log(response);  // Raw response object.
