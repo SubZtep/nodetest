@@ -1,5 +1,5 @@
 /*const express = require('express')
-const path = require('path')
+const path = require('path')*/
 const PORT = process.env.PORT || 5000
 
 express()
@@ -9,6 +9,7 @@ express()
 
 const Hapi = require('hapi')
 const server = new Hapi.Server({
+	port: PORT
 })
 
 server.route({
