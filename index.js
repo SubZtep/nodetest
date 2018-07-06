@@ -19,22 +19,27 @@ server.route({
 	path: '/',
 	handler: async (request, h) => {
 		//return 'hello hapi '+process.env.consumer_key
+		let x = 'abc'
 
 		await client.get('favorites/list', (error, tweets, response) => {
 			
 			if (error) {
 				console.log('error', error)
 			}
+
 			console.log(tweets);  // The favorites.
+
+			x = tweets
 			//console.log(response);  // Raw response object.
-			return 'YOLO'
+			//return 'YOLO'
 
 			//h.response(tweets)
 			//return 'twitter client'
 			//return tweets
 		})
 
-		return 'normal thing'
+		//return 'normal thing'
+		return x
 
 		/*setTimeout(() => {
 			client.get('favorites/list', (error, tweets, response) => {
