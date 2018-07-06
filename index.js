@@ -25,13 +25,13 @@ server.route({
 			if (error) {
 				console.log('error', error)
 			}
-			//console.log(tweets);  // The favorites.
+			console.log(tweets);  // The favorites.
 			//console.log(response);  // Raw response object.
-			//return 'YOLO'
+			return 'YOLO'
 
 			//h.response(tweets)
 			//return 'twitter client'
-			return tweets
+			//return tweets
 		})
 
 		return 'normal thing'
