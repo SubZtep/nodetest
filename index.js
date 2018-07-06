@@ -17,7 +17,7 @@ let client = new Twitter({
 server.route({
 	method: 'GET',
 	path: '/',
-	handler: (request, h) => {
+	handler: async (request, h) => {
 		//return 'hello hapi '+process.env.consumer_key
 
 		client.get('favorites/list', (error, tweets, response) => {
