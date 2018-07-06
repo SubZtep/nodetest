@@ -1,5 +1,6 @@
 const Hapi = require('hapi')
-const Twitter = require('twitter')
+//const Twitter = require('twitter')
+const axios = require('axios')
 
 const PORT = process.env.PORT || 5000
 
@@ -7,29 +8,29 @@ const server = new Hapi.Server({
 	port: PORT
 })
 
-let client = new Twitter({
+/*let client = new Twitter({
 	consumer_key: process.env.consumer_key,
 	consumer_secret: process.env.consumer_secret,
 	access_token_key: process.env.access_token_key,
 	access_token_secret: process.env.access_token_secret
-})
+})*/
 
 server.route({
 	method: 'GET',
 	path: '/',
 	handler: async (request, h) => {
 
-		let xxx = await client.get('favorites/list', (error, tweets, response) => {
-			
+		let res = await axios.get('https://reqres.in/api/users')
+		return `<img src="${res.data.data[0].avatar}">`
+
+		/*let xxx = await client.get('favorites/list', (error, tweets, response) => {
 			if (error) {
 				console.log('error', error)
 			}
-
 			console.log(tweets);  // The favorites.
-
 		})
 
-		return xxx
+		return xxx */
 
 	}
 })
