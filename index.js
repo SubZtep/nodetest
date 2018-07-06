@@ -22,12 +22,15 @@ server.route({
 
 		client.get('favorites/list', (error, tweets, response) => {
 			if (error) throw error;
-			//console.log(tweets);  // The favorites.
-			//console.log(response);  // Raw response object.
+			console.log(tweets);  // The favorites.
+			console.log(response);  // Raw response object.
 			//return 'YOLO'
 
-			h.response(tweets)
+			//h.response(tweets)
+			return 'twitter client'
 		})
+
+		return 'normal thing'
 
 		/*setTimeout(() => {
 			client.get('favorites/list', (error, tweets, response) => {
