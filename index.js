@@ -1,7 +1,8 @@
+const Hapi = require('hapi')
+const Twitter = require('twitter')
 
 const PORT = process.env.PORT || 5000
 
-const Hapi = require('hapi')
 const server = new Hapi.Server({
 	port: PORT
 })
