@@ -24,7 +24,9 @@ server.route({
 			if (error) throw error;
 			//console.log(tweets);  // The favorites.
 			//console.log(response);  // Raw response object.
-			return 'YOLO'
+			//return 'YOLO'
+
+			h.response(tweets)
 		})
 
 		/*setTimeout(() => {
