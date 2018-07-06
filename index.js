@@ -10,7 +10,7 @@ server.route({
 	method: 'GET',
 	path: '/',
 	handler: (request, h) => {
-		return 'hello hapi'
+		return 'hello hapi '+process.env.consumer_key
 	}
 })
 
