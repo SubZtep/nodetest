@@ -20,8 +20,11 @@ server.route({
 	handler: async (request, h) => {
 		//return 'hello hapi '+process.env.consumer_key
 
-		client.get('favorites/list', (error, tweets, response) => {
-			if (error) throw error;
+		await client.get('favorites/list', (error, tweets, response) => {
+			
+			if (error) {
+				console.log('error', error)
+			}
 			//console.log(tweets);  // The favorites.
 			//console.log(response);  // Raw response object.
 			//return 'YOLO'
