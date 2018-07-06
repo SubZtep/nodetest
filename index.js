@@ -20,14 +20,15 @@ server.route({
 	handler: (request, h) => {
 		//return 'hello hapi '+process.env.consumer_key
 
-		setTimeout(() => {
+		return client
+		/*setTimeout(() => {
 			client.get('favorites/list', (error, tweets, response) => {
 				if (error) throw error;
 				//console.log(tweets);  // The favorites.
 				//console.log(response);  // Raw response object.
 				return tweets
 			})
-		}, 1500)
+		}, 1500)*/
 	}
 })
 
