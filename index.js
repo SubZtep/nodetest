@@ -33,11 +33,15 @@ server.route({
 	method: 'GET',
 	path: '/tweets/{user}',
 	handler: (request, h) => {
-    //console.log(request.params)
-    T.get('search/tweets', { q: 'banana since:2011-07-11', count: 100 }, function(err, data, response) {
-      console.log(data)
-    })
-		return 'yolo'
+    T.get(
+      'statuses/user_timeline',
+      {screen_name: request.params.name, count: 200},
+      (err, data, response) => {
+        console.log(data)
+        return 'oki'
+      }
+    )
+		//return 'yolo'
 	}
 })
 
