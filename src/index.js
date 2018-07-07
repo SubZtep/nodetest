@@ -1,25 +1,22 @@
-const Hapi = require('hapi')
-const Vision = require('vision')
-const Pug = require('pug')
-
+const path = require('path')
+const hapi = require('hapi')
+const vision = require('vision')
+const pug = require('pug')
 const routes = require('./routes')
-
 
 // Start server
 
-const server = new Hapi.Server({
+const server = new hapi.Server({
   port: process.env.PORT || 5000
 })
-
 server.route(routes)
 
 const startup = async () => {
 
-  await server.register(Vision)
-
+  await server.register(vision)
   server.views({
-    engines: { pug: Pug },
-    relativeTo: __dirname,
+    engines: { pug },
+    relativeTo: path.resolve(__dirname, '../'),
     path: 'public'
 	})
 

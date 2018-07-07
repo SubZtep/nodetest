@@ -2,13 +2,16 @@
   "name": "nodetest",
   "version": "1.0.0",
   "description": "Heroku Test",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node src/index.js",
+    "test": "lab"
   },
   "dependencies": {
     "boom": "^7.2.0",
+    "code": "^5.2.0",
     "hapi": "^17.5.2",
+    "lab": "^15.5.0",
     "pug": "^2.0.3",
     "twit": "^2.2.11",
     "vision": "^5.3.3"

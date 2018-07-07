@@ -1,47 +1,80 @@
 doctype html
 html(lang='en')
   head
-    title Hapi.JS Test
+    title Hapi js Test
     link(
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"
     )
+
     style.
       .container {
         max-width: 800px;
       }
-  body
 
+    script.
+      getUsername = url => {
+        console.log('url', url)
+        let loc = null
+        try {
+          loc = new URL(url)
+        } catch (err) {
+          console.log(err)
+        }
+        if (loc) {
+          return loc.pathname.replace(/\//g, '')
+        }
+        return null
+      }
+
+      goGetTweets = url => {
+        let username = getUsername(url)
+        if (username) {
+          location.assign(`/tweets/${username}`)
+        }
+      }
+
+  body
     .jumbotron.jumbotron-fluid
       .container
         h1.display-4 Hello Hapi!
-        p.lead.mb-2 Node.js test app, a basic Twitter client for reading tweets from any user and posting tweets width the requested credentials. Deployed to Heroku from Github.
-        p.lead.mb-0
-          | Please find the souce code here:
-          |
+        p.lead.mb-2
+          | Node.js test app, using the
+          =" "
+          strong Hapi
+          =" "
+          | framework (v17). A basic  Twitter client for reading tweets from any user and posting test tweet to my account. Deployed to
+          =" "
+          strong Heroku
+          =" via "
+          strong Github
+          | .
+        p.lead.mb-0.font-italic
+          =" Please find the "
+          strong souce code
+          =" here: "
           a(href="https://github.com/SubZtep/nodetest") https://github.com/SubZtep/nodetest
 
     .container.mb-5
 
       h3 Receive Tweets
-      p Fill your username below and receive the tweets from Twitter API.
+      p Enter Twitter profile URL below and receive the tweets from Twitter API.
 
       .input-group
-        .input-group-prepend
-          span.input-group-text @
-        input.form-control#user(
+        input.form-control#url(
           type="text"
-          placeholder="Twitter Username"
+          placeholder="Twitter Profile URL"
+          value="https://twitter.com/samlabs"
         )
         .input-group-append
           button.btn.btn-primary(
             type="button"
-            onclick="location.assign(`/tweets/${document.getElementById('user').value}`)"
+            onclick="goGetTweets(document.getElementById('url').value)"
           ) Request Tweets JSON
 
 
       h3.mt-5 Send Tweet
-      p Press the button below to send a test tweet to my personal account.
+      p Feel free to press the button below to send a test tweet to my personal account. Credentials stored in Heroku’s Config Vars.
       form(method="post" action="/tweet" onsubmit="return confirm('Are you sure you want to tweet?')")
         button.btn.btn-danger(type="submit") Send Tweet
 
@@ -50,7 +83,7 @@ html(lang='en')
       .container
         p.text-secondary.mb-0
           small
-            | Thanks for your time, feel free to contact,
-            |
+            | Thanks for your time, feel free to contact me,
+            =" "
             a(href="https://twitter.com/SubZtep") Andras Serfozo
             | .

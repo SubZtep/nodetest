@@ -15,5 +15,5 @@ module.exports = [
     method: 'POST',
     path: '/tweet',
     handler: handlers.postTweetHandler
-  }
+  },
 ]
