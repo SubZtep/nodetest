@@ -10,5 +10,10 @@ module.exports = [
     method: 'GET',
     path: '/tweets/{user}',
     handler: handlers.getTweetHandler
+  },
+  {
+    method: 'POST',
+    path: '/tweet',
+    handler: handlers.postTweetHandler
   }
 ]
