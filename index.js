@@ -12,14 +12,10 @@ const server = new Hapi.Server({
 // Init Twitter
 
 var T = new Twit({
-/* 	consumer_key:         process.env.consumer_key,
+ 	consumer_key:         process.env.consumer_key,
 	consumer_secret:      process.env.consumer_secret,
 	access_token:         process.env.access_token_key,
-  access_token_secret:  process.env.access_token_secret, */
-	consumer_key:         'a123',
-	consumer_secret:      'a123',
-	access_token:         'a1123',
-	access_token_secret:  'a123',
+  access_token_secret:  process.env.access_token_secret,
 	timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
 	strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
