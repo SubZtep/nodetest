@@ -11,7 +11,7 @@ new Vue({
   methods: {
     openGetTweets () {
       if (this.profileUrl == '') return
-      window.location.assign(`/tweets/?url=${this.profileUrl}`)
+      window.location.assign(`/tweets?url=${this.profileUrl}`)
     },
 
     showTweets () {
