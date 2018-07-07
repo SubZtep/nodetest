@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+  head
+    title Hapi.JS Test
+    link(
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css"
+    )
+    style.
+      .container {
+        max-width: 800px;
+      }
+  body
+
+    .jumbotron.jumbotron-fluid
+      .container
+        h1.display-4 Hello Hapi!
+        p.lead.mb-2 Node.js test app, a basic Twitter client for reading tweets from any user and posting tweets width the requested credentials. Deployed to Heroku from Github.
+        p.lead.mb-0
+          | Please find the souce code here:
+          |
+          a(href="https://github.com/SubZtep/nodetest") https://github.com/SubZtep/nodetest
+
+    .container.mb-5
+
+      h3 Receive Tweets
+      p Fill your username below and receive the tweets from Twitter API.
+
+      .input-group
+        .input-group-prepend
+          span.input-group-text @
+        input.form-control#user(
+          type="text"
+          placeholder="Twitter Username"
+          autofocus
+          onkeyup="document.getElementById('getSubmit').disabled = this.value.trim() === ''"
+        )
+        .input-group-append
+          button.btn.btn-primary#getSubmit(
+            type="button"
+            onload="this.disabled = document.getElementById('user').value.trim() === ''"
+            onclick="location.assign(`tweets/${document.getElementById('user').value}`)"
+          ) Request Tweets JSON
+
+
+      h3.mt-5 Send Tweet
+      p Press the button below to send a random tweet.
+
+      button.btn.btn-danger() Send Tweet
+
+
+    .bg-light.rounded.mt-5.py-3
+      .container
+        p.text-secondary.mb-0
+          small
+            | Thanks for your time, feel free to contact,
+            |
+            a(href="https://twitter.com/SubZtep") Andras Serfozo
+            | .
