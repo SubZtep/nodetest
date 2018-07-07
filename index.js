@@ -41,8 +41,9 @@ server.route({
       'statuses/user_timeline',
       {screen_name: request.params.name, count: 10},
       (err, data, response) => {
-        console.log(data)
-        resolve('oki')
+        console.log('err', err)
+        console.log('response', response)
+        resolve(data)
       }
     ))
 	}
