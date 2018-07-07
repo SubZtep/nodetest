@@ -34,7 +34,6 @@ server.route({
 	path: '/tweets/{user}',
 	handler: (request, h) => {
     //console.log(request.params)
-    T = new Twit({})
     T.get('search/tweets', { q: 'banana since:2011-07-11', count: 100 }, function(err, data, response) {
       console.log(data)
     })
