@@ -1,5 +1,6 @@
 const Twit = require('twit')
 const Boom = require('boom')
+const url = require('url')
 
 // Init Twitter
 const T = new Twit({
@@ -11,12 +12,20 @@ const T = new Twit({
 	strictSSL:            true,
 })
 
-module.exports = {
+const handlers = {
+  getUsername: profileUrl => {
+    let loc = url.parse(profileUrl)
+    if (typeof loc.pathname != 'undefined') {
+      return loc.pathname.replace(/\//g, '')
+    }
+    return null
+  },
 
   getTweetHandler: (request, h) => {
+    let profileUrl = typeof request.query.url != 'undefined' ? request.query.url : null
     return new Promise((resolve, reject) => T.get(
       'statuses/user_timeline',
-      {screen_name: request.params.name, count: 10},
+      {screen_name: handlers.getUsername(profileUrl), count: 10},
       (err, data, response) => {
         if (err) {
           reject(Boom.badRequest(`Fetch Twitter Error: ${err.message}`))
@@ -40,5 +49,6 @@ module.exports = {
       }
     ))
   },
-
 }
+
+module.exports = handlers

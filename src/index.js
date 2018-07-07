@@ -7,13 +7,20 @@ const routes = require('./routes')
 // Start server
 
 const server = new hapi.Server({
-  port: process.env.PORT || 5000
+  port: process.env.PORT || 5000,
+  routes: {
+    files: {
+        relativeTo: path.join(__dirname, '../public')
+    }
+  }
 })
 server.route(routes)
 
 const startup = async () => {
 
   await server.register(vision)
+  await server.register(require('inert'))
+
   server.views({
     engines: { pug },
     relativeTo: path.resolve(__dirname, '../'),

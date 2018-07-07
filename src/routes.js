@@ -8,7 +8,12 @@ module.exports = [
   },
   {
     method: 'GET',
-    path: '/tweets/{user}',
+    path: '/app.js',
+    handler: (request, h) => h.file('app.js')
+  },
+  {
+    method: 'GET',
+    path: '/tweets',
     handler: handlers.getTweetHandler
   },
   {

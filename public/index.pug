@@ -12,28 +12,6 @@ html(lang='en')
         max-width: 800px;
       }
 
-    script.
-      getUsername = url => {
-        console.log('url', url)
-        let loc = null
-        try {
-          loc = new URL(url)
-        } catch (err) {
-          console.log(err)
-        }
-        if (loc) {
-          return loc.pathname.replace(/\//g, '')
-        }
-        return null
-      }
-
-      goGetTweets = url => {
-        let username = getUsername(url)
-        if (username) {
-          location.assign(`/tweets/${username}`)
-        }
-      }
-
   body
     .jumbotron.jumbotron-fluid
       .container
@@ -55,28 +33,43 @@ html(lang='en')
           =" here: "
           a(href="https://github.com/SubZtep/nodetest") https://github.com/SubZtep/nodetest
 
-    .container.mb-5
+    #app.container.mb-5
 
       h3 Receive Tweets
       p Enter Twitter profile URL below and receive the tweets from Twitter API.
 
       .input-group
-        input.form-control#url(
+        input.form-control(
+          v-model="profileUrl"
           type="text"
           placeholder="Twitter Profile URL"
-          value="https://twitter.com/samlabs"
         )
         .input-group-append
           button.btn.btn-primary(
             type="button"
-            onclick="goGetTweets(document.getElementById('url').value)"
-          ) Request Tweets JSON
+            @click="showTweets()"
+            :disabled="profileUrl == ''"
+          )
+            template(v-if="tweets.length > 0") Hide Tweets
+            template(v-else) Show Tweets
+          button.btn.btn-secondary(
+            type="button"
+            @click="openGetTweets()"
+            :disabled="profileUrl == ''"
+          ) Open Get Tweets Endpoint
+
+
+      ul.my-4.list-group(v-if="tweets")
+        li.list-group-item(
+          v-for="tweet in tweets"
+          :key="tweet.id"
+        ) {{tweet.text}}
 
 
       h3.mt-5 Send Tweet
-      p Feel free to press the button below to send a test tweet to my personal account. Credentials stored in Heroku’s Config Vars.
+      p Feel free to press the button below to send a test tweet to my personal account. Credentials stored in Heroku's Config Vars.
       form(method="post" action="/tweet" onsubmit="return confirm('Are you sure you want to tweet?')")
-        button.btn.btn-danger(type="submit") Send Tweet
+        button.btn.btn-danger(type="submit") Open Send Tweet Endpoint
 
 
     .bg-light.rounded.mt-5.py-3
@@ -87,3 +80,7 @@ html(lang='en')
             =" "
             a(href="https://twitter.com/SubZtep") Andras Serfozo
             | .
+
+  script(src="https://cdn.jsdelivr.net/npm/vue")
+  script(src="https://unpkg.com/axios/dist/axios.min.js")
+  script(src="/app.js")
